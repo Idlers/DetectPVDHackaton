@@ -1,21 +1,25 @@
+body {
+  margin: 0; /* Убираем отступы по умолчанию */
+}
+
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #ff0707;
-  background-size: cover;
+  background: linear-gradient(to bottom, red 30%, #ffffff 30%, #ffffff 80%, red 30%);
 }
+
 .logo-container {
-  position: absolute; /* Используйте absolute, чтобы позиционировать логотип */
-  top: 10px; /* Расстояние сверху */
-  left: 10px; /* Расстояние слева */
+  position: absolute;
+  top: 10px;
+  left: 10px;
 }
 
 .logo {
-  width: 100px; /* Задайте желаемую ширину логотипа */
-  height: auto; /* Высота автоматически пропорциональна ширине */
+  width: 100px;
+  height: auto;
 }
 
 .square {
@@ -29,15 +33,15 @@
   text-align: center;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.8);
-  position: relative; /* Добавлено для улучшения работы с overflow */
-  overflow: hidden; /* Скрывает текст, выходящий за пределы контейнера */
+  position: relative;
+  overflow: hidden;
 }
 
 .title {
   margin: 10px 0;
-  overflow: hidden; /* Скрывает текст, выходящий за пределы контейнера */
-  text-overflow: ellipsis; /* Добавляет многоточие, если текст слишком длинный */
-  white-space: nowrap; /* Запрещает перенос строк */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .input {
@@ -49,11 +53,7 @@
   margin-top: 10px;
 }
 
-.submit-button {
-  margin-top: 20px;
-}
-
-.report-button {
+.submit-button, .report-button {
   margin-top: 20px;
 }
 
@@ -63,11 +63,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Обеспечим, что модальное окно сверху */
+  z-index: 1000;
 }
 
 .modal-content {
@@ -75,17 +75,16 @@
   padding: 20px;
   border-radius: 8px;
   position: relative;
-  width: 80%; /* Ширина модального окна */
-  max-height: 80%; /* Ограничение высоты */
-  overflow: hidden; /* Скрывает выпадающий контент */
+  width: 80%;
+  max-height: 80%;
+  overflow: hidden;
 }
 
-
 .scrollable {
-  max-height: 300px;  /* Установите максимальную высоту для контейнера */
-  overflow-y: auto;   /* Это добавит вертикальную полосу прокрутки */
-  border: 1px solid #ccc; /* Для отображения границы контейнера */
-  padding: 10px; /* Для отступов внутри контейнера */
+  max-height: 300px;  
+  overflow-y: auto;   
+  border: 1px solid #ccc; 
+  padding: 10px; 
 }
 
 .report-table {
@@ -102,7 +101,7 @@
 
 .exit-button {
   margin-top: 10px;
-  background-color: #f44336; /* Красный цвет для кнопки выхода */
+  background-color: #f44336; 
   color: white;
   border: none;
   padding: 10px 15px;
@@ -110,5 +109,5 @@
 }
 
 .exit-button:hover {
-  background-color: #c62828; /* Темнее при наведении */
+  background-color: #c62828; 
 }
