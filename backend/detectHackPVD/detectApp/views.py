@@ -1,3 +1,4 @@
+import openpyxl
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser
@@ -34,25 +35,50 @@ class ViolationRecordViewSet(viewsets.ModelViewSet):
         ml_model_result = self.process_video_with_ml_model(violation_record.video.path)
 
         # Определение штрафа на основе статьи
-        fine_amount = self.get_fine_amount(ml_model_result["article"])
+        saved_records=[]
+        for result in ml_model_result:
+            article = result["article"]
+            time = result["time"]
 
-        # Заполнение полей модели
-        violation_record.violation_article = ml_model_result["article"]
-        violation_record.violation_time = ml_model_result["time"]
-        violation_record.fine_amount = fine_amount
-        violation_record.save()
+            # Определяем штраф на основе статьи
+            fine_amount = self.get_fine_amount(article)
 
-        serializer = self.get_serializer(violation_record)
+            # Создаем и сохраняем запись для каждого нарушения
+            violation_record = ViolationRecord(
+                video=video_file,
+                violation_article=article,
+                violation_time=time,
+                fine_amount=fine_amount
+            )
+            violation_record.save()
+            saved_records.append(violation_record)
+
+
+        serializer = self.get_serializer(saved_records, many=True)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def process_video_with_ml_model(self, video_path):
         # Взаимодействие с ML-моделью
-        # Замените это на фактический вызов ML-модели
-        return {
-            "article": "Статья 12.16. часть 1 Несоблюдение требований, предписанных дорожными знаками или разметкой проезжей части дороги",
-            "time": 120
-        }
+        file_path = 'result/result.xlsx' #здесь должен происходить вызов ml-модели, которая вернет путь к сохраненному excel
+        # Открываем Excel файл
+        workbook = openpyxl.load_workbook(file_path)
+        sheet = workbook.active
+
+        violations_data = []
+        for row in sheet.iter_rows(min_row=2, values_only=True):
+            violation_article = row[1]
+            violation_time = row[2]
+            if violation_time is not None:
+                violations_data.append({
+                    "article": violation_article,
+                    "time": int(violation_time)
+                })
+                print(violations_data)
+
+
+        return violations_data
 
     def get_fine_amount(self, article):
         # Возвращает штраф на основе словаря FINE_DICT
+        print(self.FINE_DICT.get(article, 0))
         return self.FINE_DICT.get(article, 0)

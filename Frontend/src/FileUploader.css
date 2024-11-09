@@ -1,0 +1,114 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #ff0707;
+  background-size: cover;
+}
+.logo-container {
+  position: absolute; /* Используйте absolute, чтобы позиционировать логотип */
+  top: 10px; /* Расстояние сверху */
+  left: 10px; /* Расстояние слева */
+}
+
+.logo {
+  width: 100px; /* Задайте желаемую ширину логотипа */
+  height: auto; /* Высота автоматически пропорциональна ширине */
+}
+
+.square {
+  width: 300px;
+  height: 300px;
+  border: 2px dashed #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  position: relative; /* Добавлено для улучшения работы с overflow */
+  overflow: hidden; /* Скрывает текст, выходящий за пределы контейнера */
+}
+
+.title {
+  margin: 10px 0;
+  overflow: hidden; /* Скрывает текст, выходящий за пределы контейнера */
+  text-overflow: ellipsis; /* Добавляет многоточие, если текст слишком длинный */
+  white-space: nowrap; /* Запрещает перенос строк */
+}
+
+.input {
+  margin-top: 20px;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}
+
+.submit-button {
+  margin-top: 20px;
+}
+
+.report-button {
+  margin-top: 20px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Обеспечим, что модальное окно сверху */
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+  width: 80%; /* Ширина модального окна */
+  max-height: 80%; /* Ограничение высоты */
+  overflow: hidden; /* Скрывает выпадающий контент */
+}
+
+
+.scrollable {
+  max-height: 300px;  /* Установите максимальную высоту для контейнера */
+  overflow-y: auto;   /* Это добавит вертикальную полосу прокрутки */
+  border: 1px solid #ccc; /* Для отображения границы контейнера */
+  padding: 10px; /* Для отступов внутри контейнера */
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.report-table th, .report-table td {
+  border: 1px solid #000;
+  padding: 8px;
+  text-align: center;
+}
+
+.exit-button {
+  margin-top: 10px;
+  background-color: #f44336; /* Красный цвет для кнопки выхода */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.exit-button:hover {
+  background-color: #c62828; /* Темнее при наведении */
+}
